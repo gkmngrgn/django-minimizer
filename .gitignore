@@ -2,3 +2,4 @@
 .project
 .pydevproject
 .python
+demo/demo.db
