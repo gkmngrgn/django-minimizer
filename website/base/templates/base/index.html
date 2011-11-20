@@ -1,5 +1,13 @@
 {% extends "minimizer/base.html" %}
+{% load trans from i18n %}
+
+{% block title %}Django Minimizer{% endblock %}
+
+{% block javascripts %}
+    {# maybe you can add template tag for include minimizer #}
+    <script defer src="{{ STATIC_URL }}js/application.js"></script>
+{% endblock %}
 
 {% block content %}
-jQuery sürümü: {{ MINIMIZER_JQUERY_VERSION }}
+    {% trans "jQuery version:" %} {{ MINIMIZER_JQUERY_VERSION }}
 {% endblock %}
