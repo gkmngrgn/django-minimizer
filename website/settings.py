@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 from settings_local import *
 
 TEMPLATE_DEBUG = DEBUG
@@ -42,7 +43,15 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 3rd Party Applications
+    'djangominimizer',
+
+    # Internal Application
     'base')
+TEMPLATE_CONTEXT_PROCESSORS = TEMPLATE_CONTEXT_PROCESSORS + (
+    'djangominimizer.context_processors.minimizer_settings',
+)
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

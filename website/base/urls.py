@@ -4,4 +4,4 @@ from base.views import Index
 
 urlpatterns = patterns(
     '',
-    url(r'^$', view=Index.as_view(), name='index'))
+    url(r'$', view=Index.as_view(), name='index'))
