@@ -1,49 +1,39 @@
-DEBUG = True
+# -*- coding: utf-8 -*-
+import os
+from settings_local import *
+
 TEMPLATE_DEBUG = DEBUG
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
-)
+    ('Gökmen Görgen', 'gokmen@alageek.com'),)
+ROOT = os.path.abspath(os.path.dirname(__file__))
 MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'demo.db',
+        'NAME': os.path.join(ROOT, 'website.db')
     }
 }
-
-TIME_ZONE = 'America/Chicago'
-LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'Europe/Istanbul'
+LANGUAGE_CODE = 'en'
 SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
-MEDIA_ROOT = ''
-MEDIA_URL = ''
-STATIC_ROOT = ''
 STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
+    os.path.join(ROOT, 'static'),)
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-)
-SECRET_KEY = 't_blv5+g%9x58alu4rv49zi$rpl4njpjp2g_s&8(2qwd%t2en_'
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder')
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
+    'django.template.loaders.app_directories.Loader')
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-)
+    'django.contrib.messages.middleware.MessageMiddleware')
 ROOT_URLCONF = 'urls'
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -52,11 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
-)
+    'base')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
