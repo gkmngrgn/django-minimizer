@@ -16,7 +16,6 @@
     </head>
 
     <body>
-
         <div id="container">
             <header>
                 {% block header %}{% endblock %}
@@ -32,17 +31,17 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/{{ MINIMIZER_JQUERY_VERSION }}/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}minimizer/js/jquery-{{ MINIMIZER_JQUERY_VERSION }}.min.js"><\/script>')</script>
 
-        <!-- scripts concatenated and minified via ant build script-->
         <script defer src="js/plugins.js"></script>
         <script defer src="js/script.js"></script>
-        <!-- end scripts-->
 
-        <script> // Change UA-XXXXX-X to be your site's ID
-            window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
-            Modernizr.load({
-                load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-            });
-        </script>
+        {% if MINIMIZER_GOOGLE_ANALYTICS_CODE %}
+            <script>
+                window._gaq = [['_setAccount','{{ MINIMIZER_GOOGLE_ANALYTICS_CODE }}'],['_trackPageview'],['_trackPageLoadTime']];
+                Modernizr.load({
+                    load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+                });
+            </script>
+        {% endif %}
 
         <!--[if lt IE 7 ]>
             <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>

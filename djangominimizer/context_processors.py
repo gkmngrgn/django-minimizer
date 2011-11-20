@@ -8,7 +8,8 @@ def minimizer_settings(request):
     context_data = {
         'MINIMIZER_JQUERY_VERSION': settings.JQUERY_VERSION,
         'MINIMIZER_DESCRIPTION': settings.DESCRIPTION,
-        'MINIMIZER_AUTHOR': settings.AUTHOR
+        'MINIMIZER_AUTHOR': settings.AUTHOR,
+        'MINIMIZER_GOOGLE_ANALYTICS_CODE': settings.GOOGLE_ANALYTICS_CODE
     }
 
     return context_data
