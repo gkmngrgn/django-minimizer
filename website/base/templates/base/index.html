@@ -1,13 +1,22 @@
-{% extends "minimizer/base.html" %}
-{% load trans from i18n %}
-
-{% block title %}Django Minimizer{% endblock %}
-
-{% block javascripts %}
-    {# maybe you can add template tag for include minimizer #}
-    <script defer src="{{ STATIC_URL }}js/application.js"></script>
-{% endblock %}
+{% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
-    {% trans "jQuery version:" %} {{ MINIMIZER_JQUERY_VERSION }}
+    <div class="hero-unit">
+        <h1>{% trans "Minimize Static Files!" %}</h1>
+        <p>
+            {% blocktrans %}
+                <strong>Django minimizer</strong> is an application for
+                supporting JavaScript compression using Google Closure
+                compiler. It's also including simple template for using html5
+                with modernizr and jQuery {{ MINIMIZER_JQUERY_VERSION }}.
+            {% endblocktrans %}
+        </p>
+    </div>
+
+    <div class="row">
+        <div class="span16">
+            Example row content.
+        </div>
+    </div>
 {% endblock %}

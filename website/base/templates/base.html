@@ -1,0 +1,42 @@
+{% extends "minimizer/base.html" %}
+{% load i18n %}
+
+{% block title %}Django Minimizer{% endblock %}
+
+{% block extraheads %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/libs/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/styles.css" />
+{% endblock %}
+
+{% block javascripts %}
+    {# maybe you can add template tag for include minimizer #}
+    <script defer src="{{ STATIC_URL }}js/application.js"></script>
+{% endblock %}
+
+{% block minimizer_content %}
+    <header class="topbar">
+        <div class="fill">
+            <div class="container">
+                <h3>
+                    <a href="{% url index %}">Django Minimizer</a>
+                </h3>
+            </div>
+        </div>
+    </header>
+    <div id="main" role="main">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    <footer class="container">
+        <p>
+        {% blocktrans %}
+        powered by <a href="http://djangoproject.com" target="_blank">Django</a>.
+        {% endblocktrans %}
+        </p>
+        <p class="copyright">
+        {% trans "Copyright ©" %}
+        Gökmen Görgen, {% now "Y" %}
+        </p>
+    </footer>
+{% endblock %}
