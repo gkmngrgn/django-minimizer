@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 from settings_local import *
+
+ROOT = os.path.abspath(os.path.dirname(__file__))
+# it's required for including djangominimizer
+sys.path.append(os.path.join(ROOT, '..'))
 
 TEMPLATE_DEBUG = DEBUG
 ADMINS = (
     ('Gökmen Görgen', 'gokmen@alageek.com'),)
-ROOT = os.path.abspath(os.path.dirname(__file__))
+
 MANAGERS = ADMINS
 DATABASES = {
     'default': {
@@ -45,6 +50,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # 3rd Party Applications
+    'south',
     'djangominimizer',
 
     # Internal Application
