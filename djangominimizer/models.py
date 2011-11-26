@@ -11,9 +11,10 @@ class Minimizer(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.script_name:
-            self.script_name = mktime(self.created_at.timetuple())
-
+            timestamp = mktime(self.created_at.timetuple())
+            self.script_name = 'min.%s.js' % timestamp
         return super(Minimizer, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ('-created_at',)
+        get_latest_by = ('created_at',)
