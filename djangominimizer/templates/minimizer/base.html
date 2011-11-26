@@ -1,3 +1,5 @@
+{% load minimizer_tags %}
+
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
@@ -21,6 +23,7 @@
         <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}minimizer/js/jquery-{{ MINIMIZER_JQUERY_VERSION }}.min.js"><\/script>')</script>
 
         {% block javascripts %}{% endblock %}
+        {% minimizer_javascripts %}
 
         {% if MINIMIZER_GOOGLE_ANALYTICS_CODE %}
             <script>
