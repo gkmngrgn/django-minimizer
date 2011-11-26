@@ -75,3 +75,8 @@ LOGGING = {
         },
     }
 }
+
+# Django Minimizer Settings
+MINIMIZER_SCRIPTS = [
+    'application.js'
+]
