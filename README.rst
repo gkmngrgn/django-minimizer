@@ -3,4 +3,3 @@ REQUIREMENTS
 
 - Django >= 1.3.1
 - South >= 0.7.3
--
