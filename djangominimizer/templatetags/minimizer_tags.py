@@ -11,7 +11,7 @@ register  = Library()
 def minimizer_styles(context):
     arguments = {
         'STATIC_URL': context['STATIC_URL'],
-        'scripts': get_minimizer_list(settings.STYLES)
+        'styles': get_minimizer_list(settings.STYLES)
     }
 
     return arguments
