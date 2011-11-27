@@ -20,7 +20,7 @@ def minimizer_styles(context):
 @register.inclusion_tag('minimizer/tags/scripts.html', takes_context=True)
 def minimizer_scripts(context):
     arguments = {
-        'STATIC_URL': context['STATIC_URL']
+        'STATIC_URL': context['STATIC_URL'],
         'scripts': get_minimizer_list(settings.SCRIPTS)
     }
 
