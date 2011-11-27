@@ -1,3 +1,2 @@
 recursive-include djangominimizer *
-recursive-exclude django-minimizer.egg-info *
 recursive-exclude website *
