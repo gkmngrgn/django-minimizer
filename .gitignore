@@ -4,3 +4,6 @@
 .python
 .settings
 website/website.db
+build
+dist
+django_minimizer.egg-info
