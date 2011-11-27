@@ -80,3 +80,6 @@ LOGGING = {
 MINIMIZER_SCRIPTS = [
     'application.js'
 ]
+MINIMIZER_STYLES = [
+    'styles.css'
+]
