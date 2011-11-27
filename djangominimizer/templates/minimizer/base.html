@@ -23,7 +23,7 @@
         <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}minimizer/js/jquery-{{ MINIMIZER_JQUERY_VERSION }}.min.js"><\/script>')</script>
 
         {% block javascripts %}{% endblock %}
-        {% minimizer_javascripts %}
+        {% minimizer_scripts %}
 
         {% if MINIMIZER_GOOGLE_ANALYTICS_CODE %}
             <script>

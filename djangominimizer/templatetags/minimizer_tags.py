@@ -17,8 +17,8 @@ def minimizer_styles(context):
     return arguments
 
 
-@register.inclusion_tag('minimizer/tags/javascripts.html', takes_context=True)
-def minimizer_javascripts(context):
+@register.inclusion_tag('minimizer/tags/scripts.html', takes_context=True)
+def minimizer_scripts(context):
     arguments = {
         'STATIC_URL': context['STATIC_URL']
         'scripts': get_minimizer_list(settings.SCRIPTS)
