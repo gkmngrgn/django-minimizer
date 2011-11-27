@@ -1,25 +1,32 @@
-from djangominimizer import settings
-from djangominimizer.utils import get_script_path
+import os
 from django.template import Library
+from djangominimizer.models import Minimizer
+from djangominimizer import settings
 
 register  = Library()
 
 
 @register.inclusion_tag('minimizer/tags/javascripts.html', takes_context=True)
 def minimizer_javascripts(context):
-    arguments = {'STATIC_URL': context['STATIC_URL']}
+    arguments = {
+        'STATIC_URL': context['STATIC_URL']
+    }
 
-    if settings.MINIMIZER_DEBUG:
-        scripts = settings.SCRIPTS
-    else:
-        scripts = get_script_path()
-        if not scripts:
-            settings.MINIMIZER_DEBUG = True
-            scripts = settings.SCRIPTS
+    if not settings.MINIMIZER_DEBUG:
+        try:
+            minimizer = Minimizer.objects.latest()
+            arguments.update({'scripts': []})
 
-    arguments.update({
-        'DEBUG': settings.MINIMIZER_DEBUG,
-        'scripts': scripts
-    })
+            for script in settings.SCRIPTS:
+                script_min = ('-%s' % minimizer.script_name).join(
+                    os.path.splitext(script))
+                arguments.get('scripts').append(script_min)
+
+                return arguments
+
+        except Minimizer.DoesNotExist:
+            pass
+
+    arguments.update({'scripts': settings.SCRIPTS})
 
     return arguments

@@ -1,9 +1,3 @@
-{% if DEBUG %}
-    {# scripts is a list #}
-    {% for script in scripts %}
-        <script defer src="{{ STATIC_URL }}js/{{ script }}"></script>
-    {% endfor %}
-{% else %}
-    {# scripts is a string #}
-    <script defer src="{{ STATIC_URL }}/js/{{ scripts }}"></script>
-{% endif %}
+{% for script in scripts %}
+    <script defer src="{{ STATIC_URL }}js/{{ script }}"></script>
+{% endfor %}
