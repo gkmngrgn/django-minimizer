@@ -14,8 +14,11 @@ setup(
     url='http://django-minimizer.alageek.com',
     author='Gökmen Görgen',
     author_email='gokmen@alageek.com',
-    packages=find_packages(),
+    packages=find_packages(exclude=('website', 'website.*')),
     include_package_data=True,
     license='GPLv3',
     keywords='django application html5 yui compressor jquery modernizr',
+    install_requires=[
+        'Django>=1.3',
+    ]
 )
