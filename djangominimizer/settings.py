@@ -1,3 +1,4 @@
+import os
 from django.conf import settings
 
 MINIMIZER_DEBUG = getattr(settings, 'MINIMIZER_DEBUG', settings.DEBUG)
@@ -8,3 +9,9 @@ DESCRIPTION = getattr(settings, 'MINIMIZER_DESCRIPTION', '')
 AUTHOR = getattr(settings, 'MINIMIZER_AUTHOR', '')
 GOOGLE_ANALYTICS_CODE = getattr(
     settings, 'MINIMIZER_GOOGLE_ANALYTICS_CODE', '')
+
+
+# Tool settings
+JS_PATH = os.path.join(settings.STATIC_ROOT, 'js')
+TOOLS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'tools'))
+YUI_COMPRESSOR = 'yuicompressor-2.4.7.jar'
