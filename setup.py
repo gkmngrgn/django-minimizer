@@ -5,7 +5,7 @@ from setuptools import find_packages
 VERSION = '0.1-alpha'
 DESCRIPTION = """\
 Django application for minimizing static files and using simple html5 template
-with jQuery and modernizr."""
+ with jQuery and modernizr."""
 
 setup(
     name='django-minimizer',
