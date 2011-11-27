@@ -25,7 +25,7 @@ class Command(BaseCommand):
 
             print("Compiling %s..." % script)
             script_min_path = '%s-%s.js' % (
-                os.path.splitext(script_path)[0], minimizer.script_name)
+                os.path.splitext(script_path)[0], minimizer.timestamp)
 
             cmd = cmd_template % {
                 'yui': os.path.join(
