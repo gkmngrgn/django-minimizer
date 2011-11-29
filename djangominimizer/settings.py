@@ -11,8 +11,8 @@ AUTHOR = getattr(settings, 'MINIMIZER_AUTHOR', '')
 GOOGLE_ANALYTICS_CODE = getattr(
     settings, 'MINIMIZER_GOOGLE_ANALYTICS_CODE', '')
 
-
 # Tool settings
 JS_PATH = os.path.join(settings.STATIC_ROOT, 'js')
+CSS_PATH = os.path.join(settings.STATIC_ROOT, 'css')
 TOOLS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'tools'))
 YUI_COMPRESSOR = 'yuicompressor-2.4.7.jar'

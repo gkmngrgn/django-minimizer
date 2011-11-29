@@ -11,33 +11,40 @@ class Command(CollectStaticCommand):
     def handle_noargs(self, **options):
         super(Command, self).handle_noargs(**options)
 
-
         print("\n\nNow, this will compress javascript and css files.")
-        minimizer = Minimizer.objects.create()
-        cmd_template = 'java -jar %(yui)s -o %(script_min)s %(script)s'
-        missing_files = 0
+        self.missing_files = 0
+        self.minimizer = Minimizer.objects.create()
+        self.cmd_template = 'java -jar %(yui)s -o %(file_min)s %(file)s'
 
-        for script in settings.SCRIPTS:
-            script_path = os.path.join(settings.JS_PATH, script)
+        # compress script files.
+        self.run_yui(settings.SCRIPTS, settings.JS_PATH)
 
-            if not os.path.exists(script_path):
-                missing_files += 1
-                print("Missing file, %s" % script)
+        # then, comress style files.
+        self.run_yui(settings.STYLES, settings.CSS_PATH)
+
+        if self.missing_files:
+            print("%s file(s) not compiled. Please check these files." % \
+                  self.missing_files)
+
+    def run_yui(self, file_list, static_path):
+        for static_file in file_list:
+            file_path = os.path.join(static_path, static_file)
+
+            if not os.path.exists(file_path):
+                self.missing_files += 1
+                print("Missing file, %s" % static_file)
 
                 continue
 
-            print("Compiling %s..." % script)
-            script_min_path = '%s-%s.js' % (
-                os.path.splitext(script_path)[0], minimizer.timestamp)
+            print("Compressing %s..." % static_file)
+            file_min_path = '%s-%s.js' % (
+                os.path.splitext(file_path)[0], self.minimizer.timestamp)
 
-            cmd = cmd_template % {
+            cmd = self.cmd_template % {
                 'yui': os.path.join(
                     settings.TOOLS_PATH, settings.YUI_COMPRESSOR),
-                'script': script_path,
-                'script_min': script_min_path
+                'file': file_path,
+                'file_min': file_min_path
             }
 
             call(cmd.split())
-
-        if missing_files:
-            print("%s file(s) not compiled. Please check these files." % missing_files)
