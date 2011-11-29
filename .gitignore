@@ -3,6 +3,7 @@
 .pydevproject
 .python
 .settings
+website/settings_local.py
 website/website.db
 build
 dist
