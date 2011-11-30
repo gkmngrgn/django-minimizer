@@ -27,6 +27,9 @@ class Command(CollectStaticCommand):
         for script in settings.SCRIPTS:
             (name, ext) = os.path.splitext(script)
             if ext == '.coffee':
+                if not settings.COFFEE_SUPPORT:
+                    continue
+
                 self.compile_script(script)
 
             self.compress(name, 'js')
