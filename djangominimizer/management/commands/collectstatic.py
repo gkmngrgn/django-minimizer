@@ -71,13 +71,14 @@ class Command(CollectStaticCommand):
             print("Missing file, %s" % file_name)
 
         else:
-            file_min_path = '%s-%s.%s' % (name, self.minimizer.timestamp, ext)
+            file_min = '%s-%s.%s' % (name, self.minimizer.timestamp, ext)
             cmd = self.cmd_yui % {
                 'file': file_path,
-                'file_min': os.path.join(static_path, file_min_path)
+                'file_min': os.path.join(static_path, file_min)
             }
 
             call(cmd.split())
+            print("Created, %s" % file_min)
 
     class UnkownFileFormatException(Exception):
         def __init__(self, ext):
