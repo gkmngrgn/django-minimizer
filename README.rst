@@ -18,3 +18,10 @@ INSTALLATION
         [...]
         'djangominimizer.context_processors.minimizer_settings'
     )
+
+- If you are using CoffeeScript instead of Javascript, don't forget to add
+this line to your `settings.py`:
+
+::
+
+    MINIMIZER_COFFEE_SUPPORT = True

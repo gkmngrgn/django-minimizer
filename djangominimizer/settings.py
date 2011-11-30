@@ -2,6 +2,7 @@ import os
 from django.conf import settings
 
 MINIMIZER_DEBUG = getattr(settings, 'MINIMIZER_DEBUG', settings.DEBUG)
+COFFEE_SUPPORT = getattr(settings, 'MINIMIZER_COFFEE_SUPPORT', False)
 CLOSURE_PATH = getattr(settings, 'MINIMIZER_CLOSURE_PATH', '')
 SCRIPTS = getattr(settings, 'MINIMIZER_SCRIPTS', [])
 STYLES = getattr(settings, 'MINIMIZER_STYLES', [])
