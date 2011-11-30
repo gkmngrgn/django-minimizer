@@ -1,6 +1,8 @@
 REQUIREMENTS
 ============
 
+- Java >= 1.4 (for YUI Compressor)
+- Node >= 0.6.0 (for CoffeeSript compiler)
 - Django >= 1.3.1
 - South >= 0.7.3
 
