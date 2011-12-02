@@ -1,14 +1,18 @@
 REQUIREMENTS
 ============
+You can install Python dependencies with:
+
+::
+
+    pip install -r requirements.txt
+
+Other dependencies:
 
 - Java >= 1.4 (for YUI Compressor)
 - Node >= 0.6.0 (for CoffeeSript compiler)
-- Django >= 1.3.1
-- South >= 0.7.3
 
 INSTALLATION
 ============
-
 - Add `djangominimizer` to INSTALLED_APPS.
 - Add template context processor of djangominimizer:
 
@@ -20,7 +24,7 @@ INSTALLATION
     )
 
 - If you are using CoffeeScript instead of Javascript, don't forget to add
-this line to your `settings.py`:
+  this line to your `settings.py`:
 
 ::
 
