@@ -1,9 +1,10 @@
 import os
 from subprocess import call
+from django.core import cache
 from django.contrib.staticfiles.management.commands.collectstatic \
     import Command as CollectStaticCommand
 from djangominimizer import settings
-from djangominimizer.models import Minimizer
+from djangominimizer.cache import Cache
 
 
 # FIXME: Is it true way to override command?
@@ -13,7 +14,7 @@ class Command(CollectStaticCommand):
 
         print("\n\nNow, this will compress javascript and css files.")
         self.missing_files = 0
-        self.minimizer = Minimizer.objects.create()
+        self.cache = Cache()
 
         # YUI command template
         self.cmd_yui = 'java -jar %s -o ' % settings.COMMAND_YUI
@@ -71,7 +72,7 @@ class Command(CollectStaticCommand):
             print("Missing file, %s" % file_name)
 
         else:
-            file_min = '%s-%s.%s' % (name, self.minimizer.timestamp, ext)
+            file_min = '%s-%s.%s' % (name, self.cache.timestamp, ext)
             cmd = self.cmd_yui % {
                 'file': file_path,
                 'file_min': os.path.join(static_path, file_min)
@@ -79,6 +80,9 @@ class Command(CollectStaticCommand):
 
             call(cmd.split())
             print("Created, %s" % file_min)
+
+        # update timestamp information in cache.
+        self.cache.update_timestamp()
 
     class UnkownFileFormatException(Exception):
         def __init__(self, ext):
