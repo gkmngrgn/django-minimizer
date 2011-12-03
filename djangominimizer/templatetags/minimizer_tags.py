@@ -1,17 +1,17 @@
 import os
 from django.template import Library
 from djangominimizer import settings
-from djangominimizer.models import Minimizer
 from djangominimizer.utils import get_minimizer_list
 
-register  = Library()
+register = Library()
 
 
 @register.inclusion_tag('minimizer/tags/styles.html', takes_context=True)
 def minimizer_styles(context):
+    timestamp = Cache().get_timestamp()
     arguments = {
         'STATIC_URL': context['STATIC_URL'],
-        'styles': get_minimizer_list(settings.STYLES)
+        'styles': get_minimizer_list(settings.STYLES, timestamp)
     }
 
     return arguments
@@ -19,9 +19,11 @@ def minimizer_styles(context):
 
 @register.inclusion_tag('minimizer/tags/scripts.html', takes_context=True)
 def minimizer_scripts(context):
+    timestamp = Cache().get_timestamp()
+
     # FIXME: optimize it.
     scripts = []
-    for script in get_minimizer_list(settings.SCRIPTS):
+    for script in get_minimizer_list(settings.SCRIPTS, timestamp):
         is_coffee = os.path.splitext(script)[-1] == '.coffee'
         scripts.append([script, is_coffee])
 

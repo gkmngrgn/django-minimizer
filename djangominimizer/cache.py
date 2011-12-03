@@ -1,26 +1,31 @@
-import time
-from datetime import datetime
+import glob
+import os
 from django.core.cache import cache
-from djangominimizer.settings import CACHE_TIMEOUT
+from djangominimizer import settings
+from djangominimizer.models import Minimizer
 
 
 class Cache:
     def __init__(self):
         self.prefix = 'djangominimizer'
-        self.timestamp = self.__timestamp()
 
     def key(self, key):
         return 'djangominimizer.%s' % key
 
     def get_timestamp(self):
-        return cache.get(self.key('timestamp'))
+        timestamp = cache.get(self.key('timestamp'))
+        if not timestamp:
+            try:
+                minimizer = Minimizer.objects.latest()
+                timestamp = minimizer.timestamp
 
-    def update_timestamp(self):
-        return cache.set(self.key('timestamp'), self.timestamp,
-                         timeout=CACHE_TIMEOUT)
-
-    def __timestamp(self):
-        now = datetime.now().timetuple()
-        timestamp = int(time.mktime(now))
+                # update timestamp information in cache.
+                self.update_timestamp(minimizer.timestamp)
+            except Minimizer.DoesNotExist:
+                pass
 
         return timestamp
+
+    def update_timestamp(self, timestamp):
+        return cache.set(self.key('timestamp'), timestamp,
+                         timeout=settings.CACHE_TIMEOUT)
