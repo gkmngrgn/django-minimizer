@@ -2,7 +2,7 @@
 from setuptools import setup
 from setuptools import find_packages
 
-VERSION = '0.1.2'
+VERSION = '0.1.3'
 DESCRIPTION = """\
 Django application for minimizing static files and using simple html5 template
  with jQuery and modernizr."""

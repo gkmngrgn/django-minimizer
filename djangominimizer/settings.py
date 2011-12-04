@@ -12,6 +12,7 @@ DESCRIPTION = getattr(settings, 'MINIMIZER_DESCRIPTION', '')
 AUTHOR = getattr(settings, 'MINIMIZER_AUTHOR', '')
 GOOGLE_ANALYTICS_CODE = getattr(
     settings, 'MINIMIZER_GOOGLE_ANALYTICS_CODE', '')
+CACHE_TIMEOUT = getattr(settings, 'MINIMIZER_CACHE_TIMEOUT', 1800)
 
 # Tool settings
 SCRIPTS_PATH = os.path.join(settings.STATIC_ROOT, 'scripts')
