@@ -16,14 +16,14 @@ class Command(CollectStaticCommand):
         print("\n\nNow, this will compress javascript and css files.")
         self.missing_files = 0
         self.cache = Cache()
-        self.timestamp = Minimizer.objects.create().timestamp
+        self.minimizer = Minimizer.objects.create()
 
         # YUI command template
         self.cmd_yui = 'java -jar %s -o ' % settings.COMMAND_YUI
         self.cmd_yui += '%(file_min)s %(file)s'
 
         # Coffee command template
-        self.cmd_coffee = '%s -c ' % settings.COMMAND_COFFEE
+        self.cmd_coffee = 'node %s -c ' % settings.COMMAND_COFFEE
         self.cmd_coffee += '%(file)s'
 
         # compress script files.
@@ -74,7 +74,7 @@ class Command(CollectStaticCommand):
             print("Missing file, %s" % file_name)
 
         else:
-            file_min = '%s-%s.%s' % (name, self.timestamp, ext)
+            file_min = '%s-%s.%s' % (name, self.minimizer.timestamp, ext)
             cmd = self.cmd_yui % {
                 'file': file_path,
                 'file_min': os.path.join(static_path, file_min)
@@ -84,7 +84,7 @@ class Command(CollectStaticCommand):
             print("Created, %s" % file_min)
 
         # update timestamp information in cache.
-        self.cache.update_timestamp(self.timestamp)
+        self.cache.update_timestamp(self.minimizer.timestamp)
 
     class UnkownFileFormatException(Exception):
         def __init__(self, ext):
