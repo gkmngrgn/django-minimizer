@@ -26,6 +26,10 @@ class Command(CollectStaticCommand):
         self.cmd_coffee = 'node %s -c ' % settings.COMMAND_COFFEE
         self.cmd_coffee += '%(file)s'
 
+        # Less command template
+        self.cmd_less = 'node %s -x ' % settings.COMMAND_LESS
+        self.cmd_less += '%(file_name)s.less -o %(file_name)s.css'
+
         # compress script files.
         for script in settings.SCRIPTS:
             (name, ext) = os.path.splitext(script)
@@ -40,6 +44,12 @@ class Command(CollectStaticCommand):
         # then, comress style files.
         for style in settings.STYLES:
             (name, ext) = os.path.splitext(style)
+            if ext == '.less':
+                if not settings.LESS_SUPPORT:
+                    continue
+
+                self.compile_style(name)
+
             self.compress(name, 'css')
 
         if self.missing_files:
@@ -52,6 +62,13 @@ class Command(CollectStaticCommand):
         """
         cmd = self.cmd_coffee % {
             'file': os.path.join(settings.SCRIPTS_PATH, script)
+        }
+
+        call(cmd.split())
+
+    def compile_style(self, style_name):
+        cmd = self.cmd_less % {
+            'file_name': os.path.join(settings.STYLES_PATH, style_name)
         }
 
         call(cmd.split())

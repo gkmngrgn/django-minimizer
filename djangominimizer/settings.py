@@ -2,7 +2,6 @@ import os
 from django.conf import settings
 
 MINIMIZER_DEBUG = getattr(settings, 'MINIMIZER_DEBUG', settings.DEBUG)
-COFFEE_SUPPORT = getattr(settings, 'MINIMIZER_COFFEE_SUPPORT', False)
 CLOSURE_PATH = getattr(settings, 'MINIMIZER_CLOSURE_PATH', '')
 SCRIPTS = getattr(settings, 'MINIMIZER_SCRIPTS', [])
 STYLES = getattr(settings, 'MINIMIZER_STYLES', [])
@@ -22,3 +21,19 @@ TOOLS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'tools'))
 COMMAND_YUI = os.path.join(TOOLS_PATH, 'yuicompressor-%s.jar' % YUI_VERSION)
 COMMAND_COFFEE = os.path.join(
     TOOLS_PATH, 'node_modules', 'coffee-script', 'bin', 'coffee')
+COMMAND_LESS = os.path.join(
+    TOOLS_PATH, 'node_modules', 'less', 'bin', 'lessc')
+
+# Check CoffeeScript and LessCSS supports
+COFFEE_SUPPORT = False
+LESS_SUPPORT = False
+
+for static_file in settings.MINIMIZER_SCRIPTS:
+    if static_file.endswith('.coffee'):
+        COFFEE_SUPPORT = True
+        break
+
+for static_file in settings.MINIMIZER_STYLES:
+    if static_file.endswith('.less'):
+        LESS_SUPPORT = True
+        break
