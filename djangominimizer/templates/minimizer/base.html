@@ -20,8 +20,14 @@
     <body>
         {% block minimizer_content %}{% endblock %}
 
+        {% if MINIMIZER_DEBUG %}
+            {% if MINIMIZER_COFFEE_SUPPORT %}
+                <script src="{{ STATIC_URL }}minimizer/js/coffee-script-1.1.3.min.js"></script>
+            {% endif %}
+        {% endif %}
+
         {% if MINIMIZER_DEBUG and MINIMIZER_COFFEE_SUPPORT %}
-            <script src="{{ STATIC_URL }}minimizer/js/coffee-script.js"></script>
+
         {% endif %}
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/{{ MINIMIZER_JQUERY_VERSION }}/jquery.min.js"></script>
