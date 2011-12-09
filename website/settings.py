@@ -80,6 +80,5 @@ MINIMIZER_SCRIPTS = [
     'application.coffee'
 ]
 MINIMIZER_STYLES = [
-    'styles.css'
+    'styles.less'
 ]
-MINIMIZER_COFFEE_SUPPORT = True
