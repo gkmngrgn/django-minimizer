@@ -21,6 +21,8 @@ TOOLS_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'tools'))
 COMMAND_YUI = os.path.join(TOOLS_PATH, 'yuicompressor-%s.jar' % YUI_VERSION)
 COMMAND_COFFEE = os.path.join(
     TOOLS_PATH, 'node_modules', 'coffee-script', 'bin', 'coffee')
+COMMAND_LESS = os.path.join(
+    TOOLS_PATH, 'node_modules', 'less', 'bin', 'lessc')
 
 # Check CoffeeScript and LessCSS supports
 COFFEE_SUPPORT = False
