@@ -20,12 +20,13 @@ Other dependencies:
 Installation
 ============
 - Add `djangominimizer` to INSTALLED_APPS.
-- Add template context processor of djangominimizer:
+- Add required template context processors for djangominimizer:
 
 ::
 
     TEMPLATE_CONTEXT_PROCESSORS = (
         [...]
+        'django.core.context_processors.request',
         'djangominimizer.context_processors.minimizer_settings'
     )
 
