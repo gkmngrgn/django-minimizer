@@ -28,12 +28,16 @@ COMMAND_LESS = os.path.join(
 COFFEE_SUPPORT = False
 LESS_SUPPORT = False
 
-for static_file in settings.MINIMIZER_SCRIPTS:
+# Scripts and styles list
+_scripts = getattr(settings, 'MINIMIZER_SCRIPTS', [])
+_styles = getattr(settings, 'MINIMIZER_STYLES', [])
+
+for static_file in _scripts:
     if static_file.endswith('.coffee'):
         COFFEE_SUPPORT = True
         break
 
-for static_file in settings.MINIMIZER_STYLES:
+for static_file in _styles:
     if static_file.endswith('.less'):
         LESS_SUPPORT = True
         break
