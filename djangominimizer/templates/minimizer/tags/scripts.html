@@ -1,3 +1,5 @@
+{% load static %}
+
 {% for script in scripts %}
-    <script defer src="{{ STATIC_URL }}scripts/{{ script.0 }}"{% if script.1 %} type="text/coffeescript"{% endif %}></script>
+    <script defer src="{% get_static_prefix %}scripts/{{ script.0 }}"{% if script.1 %} type="text/coffeescript"{% endif %}></script>
 {% endfor %}
