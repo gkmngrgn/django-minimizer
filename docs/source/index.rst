@@ -1,11 +1,11 @@
-Django Minimizer
-================
+Welcome to django-minimizer's documentation!
+============================================
 Django Minimizer compresses static files and provides html5 layout that is ready for extending to your project templates. It uses YUI compressor for compressing static files, and it has included Javascript files like modernizr, jquery, etc. Base template created with html5boilerplate.
 
 This application also supports CoffeScript and LessCSS optionally. If you prefer to use CoffeeScript or LessCSS, you'll need to Node for compiling static files to .js or .css.
 
 Requirements
-============
+------------
 Django Minimizer has no dependency other than Django, but it needs to a cache_backend for getting compressed file timestamp information. If you prefer memcached, install `python-memcached` package.
 
 ::
@@ -18,7 +18,7 @@ Other dependencies:
 - Node >= 0.6.0 (for CoffeeSript compiler)
 
 Installation
-============
+------------
 - Add `djangominimizer` to INSTALLED_APPS.
 - Add required template context processors for djangominimizer:
 
@@ -49,3 +49,18 @@ Installation
 ::
 
     MINIMIZER_COFFEE_SUPPORT = True
+
+Contents
+--------
+
+.. toctree::
+   :maxdepth: 2
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

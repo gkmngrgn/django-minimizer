@@ -1,9 +1,27 @@
+@static: 'static';
+
+.box-shadow(@value: 10px) {
+    box-shadow: #222 0 0 @value;
+    -moz-box-shadow: #222 0 0 @value;
+    -webkit-box-shadow: #222 0 0 @value;
+}
+
+.header-bg {
+    padding-top: 4px;
+    background: transparent url('/@{static}/images/top_bg.jpg') left top repeat-x;
+}
+
 body {
-    padding-top: 40px;
+    padding-top: 44px;
+    background: transparent url('/@{static}/images/pattern.gif') left top;
 }
 
 #main {
     padding: 20px 0;
+
+    #description {
+        .box-shadow;
+    }
 }
 
 footer {

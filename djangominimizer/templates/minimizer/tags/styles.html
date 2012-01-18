@@ -1,3 +1,5 @@
+{% load static %}
+
 {% for style in styles %}
-    <link href="{{ STATIC_URL }}styles/{{ style.0 }}" rel="stylesheet{% if style.1 %}/less{% endif %}" />
+    <link href="{% get_static_prefix %}styles/{{ style.0 }}" rel="stylesheet{% if style.1 %}/less{% endif %}" />
 {% endfor %}
